@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
             val offsetDcs = offsetPid + 1
 
             val dcsOriginal = rawPdu[offsetDcs]
-            rawPdu[offsetDcs] = (dcsOriginal.toInt() or 0x10).toByte()
+            rawPdu[offsetDcs] = ((dcsOriginal.toInt() and 0xFC) or 0x10).toByte()
 
             val pduHex = rawPdu.joinToString("") { "%02X".format(it) }
             log("PDU Classe 0 gerada (DCS alterado de 0x%02X para 0x%02X):".format(dcsOriginal, rawPdu[offsetDcs]))
